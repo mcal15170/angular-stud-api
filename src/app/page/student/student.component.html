@@ -1,0 +1,149 @@
+<div class="container">
+  <div class="row border">
+    <div class="col-md-12">
+      <h1 class="text-center">Student Management</h1>
+    </div>
+    <div class="col-md-12">
+      <form [formGroup]="registerForm">
+        <div class="row">
+          <div class="col-md-12">
+            <h5 class="text-center">Student Form</h5>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <!-- https://www.c-sharpcorner.com/article/reactive-forms-and-validation-in-angular-with-typescript/ -->
+              <!-- name -->
+              <input type="text" formControlName="name" placeholder="Enter Name" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &&   f.name.errors }" />
+              <div *ngIf="f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">First Name is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <!-- address -->
+              <textarea formControlName="Address" class="form-control" placeholder="Enter Address"
+                [ngClass]="{ 'is-invalid': submitted &&   f.Address.errors }">
+              </textarea>
+              <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
+                <div *ngIf="f.Address.errors.required">Address is required</div>
+                <div *ngIf="f.Address.errors.minlength">Address must be at least 8 characters</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <!--phone number -->
+              <input type="text" formControlName="phoneNumber" placeholder="Enter Phone Number" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &&   f.phoneNumber.errors }" />
+              <div *ngIf="f.phoneNumber.errors" class="invalid-feedback">
+                <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
+                <div *ngIf="f.phoneNumber.errors.pattern">Only Numbers are allowed.</div>
+                <div *ngIf="f.phoneNumber.errors.minlength">Phone Number requied only 10 characters.</div>
+                <div *ngIf="registerForm.get('phoneNumber').hasError('maxlength')">
+                  <span style="color: red;">Phone Number requied only 10 characters.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <div class="form-groung p">
+              <!--last name -->
+              <input type="text" formControlName="lastname" placeholder="Enter Last Name" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &&   f.lastname.errors }" />
+              <div *ngIf="f.lastname.errors" class="invalid-feedback">
+                <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <!-- date -->
+              <input type="date" formControlName="DateofBirth" placeholder="Select  Date Of Birth" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted &&   f.DateofBirth.errors }" />
+              <div *ngIf="submitted && f.DateofBirth.errors" class="invalid-feedback">
+                <div *ngIf="f.DateofBirth.errors.required"> DOB is required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <button (click)="onSubmit()" class="btn btn-outline-danger form-control">{{btnName|titlecase}}</button>
+          </div>
+          <div class="col-md-3">
+            <button (click)="resetForm()" class="btn btn-outline-secondary form-control">Reset</button>
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+    <div class="col-md-12">
+      <table class="studTbl">
+        <tr class="studLable">
+          <th>Name</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Last Name</th>
+          <th>DOB</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+        <tbody *ngIf="allStud?.length > 0">
+          <!-- collection -->
+          <tr *ngFor="let item of allStud">
+            <!-- collection done -->
+            <td>{{item.name|titlecase}}</td>
+            <td>{{item.Address}}</td>
+            <td>{{item.phoneNumber}}</td>
+            <td>{{item.lastname}}</td>
+            <td>{{item.DateofBirth}}</td>
+            <td><a (click)="fillForm(item._id)"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a></td>
+            <td><a (click)="deleteStud(item._id)"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr *ngIf="!allStud?.length > 0">
+            <!-- collection== null -->
+            <td colspan="7">
+              <h5 class="text-center">Records Not Found!</h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <ng-template #loading>
+        <table class="studTbl">
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Last Name</th>
+            <th>DOB</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <h5 class="text-center">Recoreds Not Founds</h5>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </ng-template> -->
+
+    </div>
+
+
+  </div>
+
+</div>

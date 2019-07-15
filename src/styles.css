@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+.studTbl{
+    width:100%;
+    border-radius: 10px; 
+
+}
+.studTbl td{ 
+    padding:13px;
+}
+/* provide some minimal visual accomodation for IE8 and below */
+.studTbl tr{
+    background: #b8d1f3;
+}
+/*  Define the background color for all the ODD background rows  */
+.studTbl tr:nth-child(odd){ 
+    background: white;
+}
+/*  Define the background color for all the EVEN background rows  */
+.studTbl tr:nth-child(even){
+    background:#f8f6ff;
+}
+
+.studTbl th{
+    font-family: Lato-Bold;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.4;
+    background-color: #6c7ae0;
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+}
+.studTbl tr{
+    font-size: 15px;
+    color: #808080;
+    line-height: 1.4;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    font-weight: unset;
+    text-align: center;
+    
+}
+
+
+.fa-trash-o:hover,.fa-pencil-square-o:hover{
+    color:#6c7ae0
+   }
+
+ /* .fa { transform: scale(1.5,1); } */
+
+
